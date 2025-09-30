@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YOUR_Empire876</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --muted:#9aa6b2;
+      --accent:#ff9800;
+      --glass: rgba(255,255,255,0.04);
+      --maxw: 1100px;
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:#0f1724;color:#e6eef6}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:var(--maxw);margin:0 auto;padding:30px}
+    header{background:var(--glass);padding:16px;border-radius:12px;margin-bottom:24px}
+    .nav{display:flex;justify-content:space-between;align-items:center}
+    nav ul{list-style:none;display:flex;gap:14px;margin:0;padding:0}
+    .brand{font-weight:700;font-size:20px;color:var(--accent)}
+    .btn{background:var(--accent);color:#fff;padding:10px 16px;border:none;border-radius:8px;cursor:pointer;font-weight:600}
+    .hero{padding:30px;background:var(--glass);border-radius:12px;text-align:center}
+    .hero h1{font-size:34px;margin:0 0 12px}
+    .hero p{color:var(--muted);font-size:18px}
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:24px}
+    .service{background:rgba(255,255,255,0.05);padding:16px;border-radius:12px}
+    .service h3{margin-top:0;color:var(--accent)}
+    .service img{width:100%;border-radius:8px;margin-bottom:8px}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:24px}
+    .thumb img{width:100%;height:140px;object-fit:cover;border-radius:10px}
+    form{display:grid;gap:12px;margin-top:12px}
+    input,textarea,select{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:#1c2538;color:#fff}
+    footer{text-align:center;margin-top:28px;color:var(--muted);font-size:14px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="nav">
+        <div class="brand">YOUR_Empire876</div>
+        <nav>
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#booking">Booking</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Welcome to YOUR_Empire876</h1>
+      <p>A family-based business offering Catering, Graphic Design, Applications & Resumes, Hair Styling & Barbering.</p>
+      <button class="btn" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Our Services</button>
+    </section>
+
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services">
+        <div class="service">
+          <h3>Catering</h3>
+          <img src="https://source.unsplash.com/400x250/?catering,food" alt="Catering Service">
+          <p>Delicious meals for events, parties, and family gatherings. Customized menus to fit your style and budget.</p>
+        </div>
+        <div class="service">
+          <h3>Graphic Design</h3>
+          <img src="https://source.unsplash.com/400x250/?graphic,design" alt="Graphic Design">
+          <p>Logos, flyers, posters, and branding tailored to your business or personal needs.</p>
+        </div>
+        <div class="service">
+          <h3>Applications & Resumes</h3>
+          <img src="https://source.unsplash.com/400x250/?resume,work" alt="Resume Service">
+          <p>Professional applications, resumes, and cover letters to help you land your dream job.</p>
+        </div>
+        <div class="service">
+          <h3>Hair Styling & Barbering</h3>
+          <img src="https://source.unsplash.com/400x250/?barber,hair" alt="Hair Styling & Barbering">
+          <p>Expert hairstylists and barbers ready to give you a fresh, stylish look.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <div class="thumb"><img src="https://source.unsplash.com/400x300/?catering,event" alt="Catering Setup"></div>
+        <div class="thumb"><img src="https://source.unsplash.com/400x300/?dishes,food" alt="Dishes"></div>
+        <div class="thumb"><img src="https://source.unsplash.com/400x300/?graphic,art" alt="Graphic Design Samples"></div>
+        <div class="thumb"><img src="https://source.unsplash.com/400x300/?resume,documents" alt="Resume Example"></div>
+        <div class="thumb"><img src="https://source.unsplash.com/400x300/?hairstyle,salon" alt="Hairstyles"></div>
+        <div class="thumb"><img src="https://source.unsplash.com/400x300/?barber,shop" alt="Barbering"></div>
+      </div>
+    </section>
+
+    <section id="booking">
+      <h2>Book an Appointment</h2>
+      <form id="bookingForm">
+        <input type="text" id="bName" placeholder="Your Name" required>
+        <input type="email" id="bEmail" placeholder="Your Email" required>
+        <input type="tel" id="bPhone" placeholder="Your Phone Number" required>
+        <select id="bService" required>
+          <option value="">Select a Service</option>
+          <option value="Catering">Catering</option>
+          <option value="Graphic Design">Graphic Design</option>
+          <option value="Applications & Resumes">Applications & Resumes</option>
+          <option value="Hair Styling">Hair Styling</option>
+          <option value="Barbering">Barbering</option>
+        </select>
+        <input type="date" id="bDate" required>
+        <textarea id="bNotes" placeholder="Additional Notes"></textarea>
+        <button type="button" class="btn" onclick="submitBooking()">Submit Booking</button>
+        <p id="bookingMsg" style="font-size:14px;color:var(--muted)"></p>
+      </form>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="button" class="btn" onclick="submitContact()">Send</button>
+        <p id="formMsg" style="font-size:14px;color:var(--muted)"></p>
+      </form>
+    </section>
+
+    <footer>
+      <p>&copy; <span id="year"></span> YOUR_Empire876 · All Rights Reserved</p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function submitBooking() {
+      const name = document.getElementById('bName').value;
+      const email = document.getElementById('bEmail').value;
+      const phone = document.getElementById('bPhone').value;
+      const service = document.getElementById('bService').value;
+      const date = document.getElementById('bDate').value;
+      const notes = document.getElementById('bNotes').value;
+      
+      const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\nDate: ${date}\nNotes: ${notes}`;
+      window.location.href = `mailto:yourempire876@gmail.com?subject=Booking Request&body=${encodeURIComponent(body)}`;
+      document.getElementById('bookingMsg').textContent = "Booking form opened in your email client. Please send to complete.";
+    }
+
+    function submitContact() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      const body = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
+      window.location.href = `mailto:yourempire876@gmail.com?subject=Contact Message&body=${encodeURIComponent(body)}`;
+      document.getElementById('formMsg').textContent = "Contact form opened in your email client. Please send to complete.";
+    }
+  </script>
+</body>
+</html>
