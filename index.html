@@ -35,6 +35,13 @@
     form{display:grid;gap:12px;margin-top:12px}
     input,textarea,select{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:#1c2538;color:#fff}
     footer{text-align:center;margin-top:28px;color:var(--muted);font-size:14px}
+    /* Booking form enhancements for second form */
+    .form-group{margin-bottom:12px;}
+    .form-row{display:flex;gap:12px;}
+    .form-row .col{flex:1;}
+    .btn-block{width:100%;}
+    .btn-dark{background:#222;border:none;}
+    .btn-lg{font-size:17px;padding:14px 20px;}
   </style>
 </head>
 <body>
@@ -99,23 +106,42 @@
 
     <section id="booking">
       <h2>Book an Appointment</h2>
-      <form id="bookingForm">
-        <input type="text" id="bName" placeholder="Your Name" required>
-        <input type="email" id="bEmail" placeholder="Your Email" required>
-        <input type="tel" id="bPhone" placeholder="Your Phone Number" required>
-        <select id="bService" required>
-          <option value="">Select a Service</option>
-          <option value="Catering">Catering</option>
-          <option value="Graphic Design">Graphic Design</option>
-          <option value="Applications & Resumes">Applications & Resumes</option>
-          <option value="Hair Styling">Hair Styling</option>
-          <option value="Barbering">Barbering</option>
-        </select>
-        <input type="date" id="bDate" required>
-        <textarea id="bNotes" placeholder="Additional Notes"></textarea>
-        <button type="button" class="btn" onclick="submitBooking()">Submit Booking</button>
-        <p id="bookingMsg" style="font-size:14px;color:var(--muted)"></p>
+      <!-- Booking via FormSubmit.co (with inline confirmation) -->
+      <form id="bookingForm" action="https://formsubmit.co/yourempire876@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="thankyou.html">
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col">
+              <input type="text" name="Name" class="form-control" placeholder="Full Name" required>
+            </div>
+            <div class="col">
+              <input type="email" name="Email" class="form-control" placeholder="Email Address" required>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="tel" name="Phone" class="form-control" placeholder="Phone Number" required>
+        </div>
+        <div class="form-group">
+          <select name="Service" class="form-control" required>
+            <option value="">Select a Service</option>
+            <option value="Catering">Catering</option>
+            <option value="Graphic Design">Graphic Design</option>
+            <option value="Applications & Resumes">Applications & Resumes</option>
+            <option value="Hair Styling">Hair Styling</option>
+            <option value="Barbering">Barbering</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="date" name="Date" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <textarea name="Notes" class="form-control" placeholder="Additional Notes" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-lg btn-dark btn-block">Submit Booking</button>
       </form>
+      <p id="confirmationMessage" style="color:green;margin-top:10px;"></p>
     </section>
 
     <section id="contact">
@@ -137,19 +163,6 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function submitBooking() {
-      const name = document.getElementById('bName').value;
-      const email = document.getElementById('bEmail').value;
-      const phone = document.getElementById('bPhone').value;
-      const service = document.getElementById('bService').value;
-      const date = document.getElementById('bDate').value;
-      const notes = document.getElementById('bNotes').value;
-      
-      const body = `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nService: ${service}\nDate: ${date}\nNotes: ${notes}`;
-      window.location.href = `mailto:yourempire876@gmail.com?subject=Booking Request&body=${encodeURIComponent(body)}`;
-      document.getElementById('bookingMsg').textContent = "Booking form opened in your email client. Please send to complete.";
-    }
-
     function submitContact() {
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
@@ -158,6 +171,17 @@
       const body = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
       window.location.href = `mailto:yourempire876@gmail.com?subject=Contact Message&body=${encodeURIComponent(body)}`;
       document.getElementById('formMsg').textContent = "Contact form opened in your email client. Please send to complete.";
+    }
+
+    // Inline confirmation for booking form (FormSubmit.co)
+    const bookingForm = document.getElementById('bookingForm');
+    if (bookingForm) {
+      bookingForm.addEventListener('submit', function(e) {
+        setTimeout(() => {
+          document.getElementById('confirmationMessage').textContent = 'Thank you! Your booking has been received.';
+          bookingForm.reset();
+        }, 500);
+      });
     }
   </script>
 </body>
